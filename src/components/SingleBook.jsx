@@ -1,17 +1,26 @@
+import { Component } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 
-const SingleBook = (props) => (
-  <Container>
-    <Row className="justify-content-center">
-      <Col>
-        <Card bg="light">
-          <Card.Img variant="top" src={props.book.img} />
-          <Card.Body>
-            <Card.Title>{props.book.title}</Card.Title>
-          </Card.Body>
-        </Card>
-      </Col>
-    </Row>
-  </Container>
-);
+class SingleBook extends Component {
+  state = {
+    selected: false,
+  };
+  render() {
+    return (
+      <Container>
+        <Row className="justify-content-center">
+          <Col>
+            <Card className={this.state.selected ? "border-danger" : "border-light"}>
+              <Card.Img variant="top" src={this.props.book.img} onClick={() => this.setState({ selected: !this.state.selected })} />
+              <Card.Body>
+                <Card.Title>{this.props.book.title}</Card.Title>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
+}
+
 export default SingleBook;
